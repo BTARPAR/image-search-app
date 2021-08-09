@@ -1,40 +1,73 @@
-import React, {useContext} from 'react'
-import Gallery from 'react-grid-gallery'
+import React, {useContext, useState} from 'react'
+import DztImageGalleryComponent from "reactjs-image-gallery";
 import SearchBar from "../components/Searchbar";
 import {SearchContext} from "../reducers";
 
 const SearchAppInitialApp = () => {
   const {searched = []} = useContext(SearchContext)
-  const IMAGES =
-    [{
-      src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-      thumbnailWidth: 320,
-      thumbnailHeight: 174,
-      isSelected: false,
-      caption: "After Rain (Jeshu John - designerspics.com)"
+  const [viewMode, setViewMode] = useState(false)
+  const [images, setImages] = useState([])
+  const IMAGES = [
+    {
+      url:
+        "https://images.unsplash.com/photo-1465310477141-6fb93167a273?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+      title: "Kayak",
+      thumbUrl:
+        "https://images.unsplash.com/photo-1465310477141-6fb93167a273?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=250&q=80"
     },
-      {
-        src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-        thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-        thumbnailWidth: 320,
-        thumbnailHeight: 212,
-        tags: [{value: "Ocean", title: "Ocean"}, {value: "People", title: "People"}],
-        caption: "Boats (Jeshu John - designerspics.com)"
-      },
+    {
+      url:
+        "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+      title: "Cyclist competition",
+      thumbUrl:
+        "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=250&q=80"
+    },
+    {
+      url:
+        "https://images.unsplash.com/photo-1526485856375-9110812fbf35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+      title: "Surfer in action",
+      thumbUrl:
+        "https://images.unsplash.com/photo-1526485856375-9110812fbf35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=250&q=80"
+    },
+    {
+      url:
+        "https://images.unsplash.com/photo-1423994485548-7c3cf5c99cfb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1947&q=80",
+      title: "Drops",
+      thumbUrl:
+        "https://images.unsplash.com/photo-1423994485548-7c3cf5c99cfb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1947&q=80"
+    },
 
-      {
-        src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-        thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-        thumbnailWidth: 320,
-        thumbnailHeight: 212
-      }]
-  const displayImages = searched.map((info) =>  <Gallery images={IMAGES} enableImageSelection={false}/>)
-  console.log({searched})
+    {
+      url:
+        "https://images.unsplash.com/photo-1444465693019-aa0b6392460d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+      title: "Bird",
+      thumbUrl:
+        "https://images.unsplash.com/photo-1444465693019-aa0b6392460d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=250&q=80"
+    },
+    {
+      url:
+        "https://images.unsplash.com/photo-1436968188282-5dc61aae3d81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80",
+      title: "Blue river",
+      thumbUrl:
+        "https://images.unsplash.com/photo-1436968188282-5dc61aae3d81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=250&q=80"
+    },
+    {
+      url:
+        "https://images.unsplash.com/photo-1446488547543-78c11468449a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80",
+      title: "Mountains",
+      thumbUrl:
+        "https://images.unsplash.com/photo-1446488547543-78c11468449a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=250&q=80"
+    }
+  ]
+  const openImages = (index) => {
+    const selectedImages = [IMAGES[index]]
+    setImages(selectedImages)
+    setViewMode(true)
+  }
   return (
     <div className={'search-app'}>
       <SearchBar/>
-      {displayImages}
+      <DztImageGalleryComponent images={viewMode ? images : IMAGES} imageBackgroundColor={'white'}/>
     </div>
   )
 }

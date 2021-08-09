@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useMemo, useState} from 'react'
+import React, {useContext, useMemo, useState} from 'react'
 import Input from '../Input'
 import {SearchContext} from "../../reducers";
 import './searchbar.css'
 
 function SearchBar() {
   const isLightTheme = true
-  const useSearchContext = useContext(SearchContext)
+  const {search: searchAPI} = useContext(SearchContext)
 
   const [search, setSearch] = useState('')
 
@@ -14,9 +14,10 @@ function SearchBar() {
   }
 
 
-  const handleSubmit = useMemo((e) => {
-    //API Call Change the reducers value for
-  })
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    searchAPI(search)
+  }
 
   return (
     <div className='container searchbar-container'>

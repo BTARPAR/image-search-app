@@ -6,3 +6,13 @@
 .search-app > div:nth-child(2) {
     margin-top: 10rem;
 }
+
+.pagination-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #f1f6f9;
+    position: fixed;
+    z-index: 2;
+    top: 8rem;
+}

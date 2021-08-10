@@ -16,6 +16,9 @@ const Input = ({
              value={value}
              name={inputName}
       />
+      <i className={`fas fa-times`}
+         style={{visibility: value ? 'visible' : 'hidden', cursor: 'pointer'}}
+         onClick={() => onChangeHandler('')}/>
     </>)
 }
 

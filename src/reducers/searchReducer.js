@@ -10,16 +10,17 @@ function searchReducer(state, action) {
     case MAKE_REQUEST:
       return {loading: true, searched: []}
     case GET_DATA:
-      return {...state, loading: false, searched: action.payload.jobs}
+      return {...state, loading: false, searched: action.payload.searched, page: action.payload.page}
     case ERROR:
       return {
         ...state,
         loading: false,
         searched: [],
-        error: action.payload.error
+        error: action.payload.error,
+        page: 0
       }
-    // case UPDATE_HAS_NEXT_PAGE:
-    //   return {...state, hasNextPage: action.payload.hasNextPage}
+    case UPDATE_HAS_NEXT_PAGE:
+      return {...state, page: action.payload.page}
     default:
       return state
   }
